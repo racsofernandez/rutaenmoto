@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <title>Google Maps JavaScript API Example</title>
+
+  </head>
+  <h:body>
+  <ui:composition template="/templates/template.xhtml">
+  <ui:param name="onLoadJS" value="elevaciones()" />
+  <ui:define name="content"> 
+ <div id="map_wrapper">
+    <div id="map_canvas" class="mapping"></div>
+	<div id="elevation_chart"></div>
+	<div>
+	    <form>
+			<input type="button" 
+			onclick="saveMapToDataUrl()" 
+			value="Generar imagen del mapa"/>
+		</form>
+		
+	</div>	
+</div>
+<div id="right-panel">
+<!--div id="travel_selector">
+    <p><strong>Modo de Viaje: </strong>
+    <select id="travelType" onchange="calcRoute();">
+        <option value="DRIVING">Driving</option>
+        <option value="WALKING">Walking</option>
+        <option value="BICYCLING">Bicycling</option>
+        <option value="TRANSIT">Transit</option>
+    </select></p>
+</div-->
+    <div id="resumen-ruta"></div>
+    <div id="directions-panel"><form>
+			<input type="button" onclick="saveElevationToDataUrl()" value="Generar imagen de elevaciones" />
+		</form></div>
+    
+</div>
+<h:outputScript library="js" name="html2canvas.js" />
+<h:outputScript library="js" name="utilidades.js" />
+<h:outputScript library="url" name="jquery.min.js" />
+<h:outputScript library="rutas" name="ruta_sacedon_jadraque.js" />
+<!-- script src="rutas/ruta_canamares.js"></script-->
+<!-- script src="rutas/ruta_majaelrayo.js"></script-->
+
+<h:outputScript library="js" name="mapa.js" />
+
+</ui:define>
+<ui:define name="footer" /> 
+</ui:composition>
+  </h:body>
+</html>
