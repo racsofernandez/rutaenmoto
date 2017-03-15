@@ -41,6 +41,10 @@ function getAlto() {
 	return alto;
 }
 
+/**
+ * Ancho del mapa
+ * @returns {Number}
+ */
 function getAncho() {
 	ancho = 60;
 	return ancho;

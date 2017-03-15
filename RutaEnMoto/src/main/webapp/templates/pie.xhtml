@@ -8,13 +8,17 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Insert title here</title>
 </head>
-<h:body>
-<ui:composition template="templates/principal.xhtml">
-  <ui:define name="titulo_contenido">
-  	<h1>Página por defecto</h1>
-  	<small>La página que se carga por defecto.</small>
-  </ui:define> 
+<body>
+<ui:composition>
 
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      Anything you want
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+
+  
 </ui:composition>
-</h:body>
+</body>
 </html>

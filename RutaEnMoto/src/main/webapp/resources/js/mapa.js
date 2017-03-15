@@ -75,6 +75,11 @@ function initialize() {
     
 }
 
+function iniciar() {
+	elevaciones();
+	
+}
+
 function elevaciones() {
 
     // Create an ElevationService.
@@ -211,7 +216,7 @@ function plotElevation(elevations, status) {
 
   // Draw the chart using the data within its DIV.
   chart.draw(data, {
-    height: 200,
+    height: chartDiv.clientHeight,
     legend: 'none',
     titleY: 'Elevation (m)'
   });
@@ -234,17 +239,24 @@ function saveMapToDataUrl() {
 }
 function saveElevationToDataUrl() {
 
-    var element = $("#elevation_chart");
+//    var element = $("#elevation_chart");
 
-    html2canvas(element, {
-        useCORS: true,
-        onrendered: function(canvas) {
-            var dataUrl= canvas.toDataURL("image/png");
-
-            // DO SOMETHING WITH THE DATAURL
-            // Eg. write it to the page
-            document.write('<img src="' + dataUrl + '"/>');
-        }
-    });
+    var my_div = document.getElementById('elevation_chart');
+    var my_chart = new google.visualization.ChartType(my_div);
+    google.visualization.events.addListener(my_chart, 'ready', function () {
+    	document.write('<img src="' + my_chart.getImageURI() + '">');
+      });
+//    
+//    
+//    html2canvas(element, {
+//        useCORS: true,
+//        onrendered: function(canvas) {
+//            var dataUrl= canvas.toDataURL("image/png");
+//
+//            // DO SOMETHING WITH THE DATAURL
+//            // Eg. write it to the page
+//            document.write('<img src="' + dataUrl + '"/>');
+//        }
+//    });
 }
 
