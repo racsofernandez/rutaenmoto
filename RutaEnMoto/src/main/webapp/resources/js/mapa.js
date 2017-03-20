@@ -18,17 +18,18 @@
 
 function initialize() {
     // Change a few 'var variableName' to 'window.' This lets us set global variables from within our function
+    var rutaInput = jQuery.parseJSON(document.getElementById("ruta").value);
+
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer();
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
-        mapTypeId: getTipoMapa(),
+   		mapTypeId: rutaInput.tipoMapa,
 		disableDefaultUI: true
     };
                     
-
-	altura = getAlto();
-	anchura = getAncho();
+	altura = rutaInput.alto;
+	anchura = rutaInput.ancho;
 	map_wrapper = document.getElementById("map_wrapper");
 	map_canvas = document.getElementById("map_canvas");
 	right_panel = document.getElementById("right-panel");
@@ -42,28 +43,27 @@ function initialize() {
     // Display a map on the page
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     map.setTilt(45);
-        
-    markers = getMarcadoresRuta();
+     
     
-   for (var i = 0; i < markers.length; i++) {
+    markers = rutaInput.markers;
+    
+    for (var i = 0; i < markers.length; i++) {
    		var etiqueta = "";
-   		if (markers[i][5] == true) {
-   			etiqueta = markers[i][2];
+   		if (markers[i].mostrarNombre == true) {
+   			etiqueta = markers[i].nombre;
    		}
 		 var beachMarker = new google.maps.Marker({
-			  position: {lat: markers[i][1], lng: etiqueta},
+			  position: {lat: markers[i].latitud, lng: markers[i].longitud},
 			  map: map,
-			  label: {fontWeight: "bold", text:markers[i][0]},
+			  label: {fontWeight: "bold", text:markers[i].nombre},
 		      icon: {
 				      path: google.maps.SymbolPath.CIRCLE,
 				      scale: 1,
-				      labelOrigin: new google.maps.Point(0,markers[i][4])
+				      labelOrigin: new google.maps.Point(0,markers[i].posicionEtiqueta)
 				    },
 		 });
 		 
-/* 		 pos = new google.maps.LatLng(markers[i][1],markers[i][2]);
-		 path.push(pos);
- */   }
+   }
 	
     // Render our directions on the map
     directionsDisplay.setMap(map);
@@ -77,7 +77,6 @@ function initialize() {
 
 function iniciar() {
 	elevaciones();
-	
 }
 
 function elevaciones() {
@@ -98,14 +97,14 @@ function calcRoute() {
 	var waypts = [];
 	for (var i = 1; i < markers.length-1; i++) {
       waypts.push({
-	      location: new google.maps.LatLng(markers[i][1], markers[i][2]),
-	      stopover:markers[i][3]
+	      location: new google.maps.LatLng(markers[i].latitud, markers[i].longitud),
+	      stopover:markers[i].parada
       });
 	}
     var request = {
-        origin: new google.maps.LatLng(markers[0][1], markers[0][2]),
+        origin: new google.maps.LatLng(markers[0].latitud, markers[0].longitud),
 		waypoints: waypts,
-        destination: new google.maps.LatLng(markers[markers.length-1][1], markers[markers.length-1][2]),
+        destination: new google.maps.LatLng(markers[markers.length-1].latitud, markers[markers.length-1].longitud),
         // Set our mode of travel - default: driving
         //travelMode: google.maps.TravelMode[selectedMode]
 		travelMode: google.maps.TravelMode["DRIVING"]
@@ -132,7 +131,7 @@ function calcRoute() {
 						punto+=1;
 						//punto = w + i + 2;
 						//route.legs[i].via_waypoints[w].toString()
-						summaryPanel.innerHTML += "- Punto " + punto + ": " + " " + markers[punto-1][0]+ "" + '<br>';
+						summaryPanel.innerHTML += "- Punto " + punto + ": " + " " + markers[punto-1].nombre+ "" + '<br>';
 					}
 					//path.push(route.legs[i].steps[0].path[0]);
 					//pathNombre.push(markers[i][0]);
@@ -140,7 +139,7 @@ function calcRoute() {
 						for (var y = 1; y < route.legs[i].steps[x].path.length; y++) {
 							if (y%20 == 0) {
 								path.push(route.legs[i].steps[x].path[y]);
-								pathNombre.push(markers[i][0]);
+								pathNombre.push(markers[i].nombre);
 							}
 						}
 					}

@@ -15,9 +15,9 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
   	<h1>Ruta</h1>
   	<small>#{rutaBean.titulo}</small>
   </ui:define> 
-  
   <ui:param name="onLoadJS" value="iniciar()" />
   <ui:define name="contenido"> 
+  <h:inputHidden id="ruta" value="#{rutaBean.toJson}" />
  <div id="map_wrapper">
     <div id="map_canvas"></div>
 	<div id="elevation_chart"></div>
@@ -51,8 +51,6 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:outputScript library="js" name="html2canvas.js" />
 <!--  -->
 <h:outputScript library="js" name="utilidades.js" />
-<!--  -->
-<h:outputScript library="rutas" name="ruta_sacedon_jadraque.js" />
 <!--  -->
 <h:outputScript library="js" name="mapa.js" />
 

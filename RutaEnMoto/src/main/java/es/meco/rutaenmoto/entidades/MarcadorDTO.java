@@ -1,6 +1,6 @@
 package es.meco.rutaenmoto.entidades;
 
-public class Marcador {
+public class MarcadorDTO {
 
 	/** Nombre de la localización. */
 	private String nombre;
@@ -20,13 +20,13 @@ public class Marcador {
 	/** Indica si aparece el nombre de la localización en el mapa o no aparece. */
 	private boolean mostrarNombre;
 
-	public Marcador() {
+	public MarcadorDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	
 	
-	public Marcador(String nombre, Double latitud, Double longitud, Boolean parada,
+	public MarcadorDTO(String nombre, Double latitud, Double longitud, Boolean parada,
 			Integer posicionEtiqueta, boolean mostrarNombre) {
 		super();
 		this.nombre = nombre;
