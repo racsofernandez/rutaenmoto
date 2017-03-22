@@ -30,11 +30,11 @@ function initialize() {
                     
 	altura = rutaInput.alto;
 	anchura = rutaInput.ancho;
-	map_wrapper = document.getElementById("map_wrapper");
+    map_wrapper = document.getElementById("map_wrapper");
 	map_canvas = document.getElementById("map_canvas");
 	right_panel = document.getElementById("right-panel");
-	map_wrapper.style.width=anchura + "%";
-	right_panel.style.width=(98 - anchura) + "%";
+	map_wrapper.style.width="100%"; //anchura + "%";
+	//right_panel.style.width=(98 - anchura) + "%";
 	map_canvas.style.height=altura + "%";
 	 
 					
@@ -122,16 +122,16 @@ function calcRoute() {
 			  for (var i = 0; i < route.legs.length; i++) {
 			  punto+=1;
 				var routeSegment = i + 1;
-				summaryPanel.innerHTML += '<b>Tramo de la ruta: ' + routeSegment +
-					'</b><br>';
-				summaryPanel.innerHTML += route.legs[i].start_address + ' hasta ';
-				summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+				summaryPanel.innerHTML += '<h4><b>Tramo de la ruta: ' + routeSegment +
+					'</b></h4>';
+				summaryPanel.innerHTML += "<p>" + route.legs[i].start_address + ' hasta ' + route.legs[i].end_address + '</p>';
+				summaryPanel.innerHTML += "<ul>";
 				if (route.legs[i].via_waypoints.length > 0) {
 					for (var w = 0; w < route.legs[i].via_waypoints.length; w++) {
 						punto+=1;
 						//punto = w + i + 2;
 						//route.legs[i].via_waypoints[w].toString()
-						summaryPanel.innerHTML += "- Punto " + punto + ": " + " " + markers[punto-1].nombre+ "" + '<br>';
+						summaryPanel.innerHTML += "<li>Punto " + punto + ": " + " " + markers[punto-1].nombre+ "" + '</li>';
 					}
 					//path.push(route.legs[i].steps[0].path[0]);
 					//pathNombre.push(markers[i][0]);
@@ -145,15 +145,17 @@ function calcRoute() {
 					}
 					
 				}
+				summaryPanel.innerHTML += "</ul>";
+
 				summaryPanel.innerHTML += route.legs[i].distance.text + ' ' + route.legs[i].duration.text + '<br><br>';
 				distancia+=route.legs[i].distance.value;
 				duracion+=route.legs[i].duration.value;
 			  }
 			
 			 var resumenRuta = document.getElementById('resumen-ruta');
-			 resRuta = '<b>Resumen de la ruta: </b><br>';
-			 resRuta += 'Distancia: ' + distancia/1000 + ' km<br>'
-			 resRuta += 'Duración: ' + secondsToTime(duracion) + '<br>';
+			 resRuta = '<h4><b>Resumen de la ruta:</b></h4>';
+			 resRuta += '<p>Distancia: ' + distancia/1000 + ' km</p>'
+			 resRuta += '<p>Duración: ' + secondsToTime(duracion) + '</p>';
 			resumenRuta.innerHTML = resRuta + resumenRuta.innerHTML;
         }
     });
@@ -208,14 +210,14 @@ function plotElevation(elevations, status) {
     	minElev=elevations[i].elevation;
   }
 	 var resumenRuta = document.getElementById('resumen-ruta');
-	resumenRuta.innerHTML = resumenRuta.innerHTML + 'Desnivel: ' + parseFloat(minElev).toFixed(2)  
-		+ ' m - ' + parseFloat(maxElev).toFixed(2) + ' m<br>';
+	resumenRuta.innerHTML = resumenRuta.innerHTML + '<p>Desnivel: ' + parseFloat(minElev).toFixed(2)  
+		+ ' m - ' + parseFloat(maxElev).toFixed(2) + ' m</p>';
 
 
 
   // Draw the chart using the data within its DIV.
   chart.draw(data, {
-    height: chartDiv.clientHeight,
+    height: 150,
     legend: 'none',
     titleY: 'Elevation (m)'
   });
@@ -232,7 +234,8 @@ function saveMapToDataUrl() {
 
             // DO SOMETHING WITH THE DATAURL
             // Eg. write it to the page
-            document.write('<img src="' + dataUrl + '"/>');
+            //document.write('<img src="' + dataUrl + '"/>');
+            window.open(dataUrl);
         }
     });
 }

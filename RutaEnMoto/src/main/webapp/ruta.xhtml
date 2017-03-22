@@ -10,49 +10,79 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 
   </head>
   <h:body>
-  <ui:composition template="/templates/template.xhtml">
+  <ui:composition template="/templates/principal.xhtml">
+  <ui:define name="titulo_contenido">
+  	<h1>Ruta</h1>
+  	<small>#{rutaBean.titulo}</small>
+  </ui:define> 
   <ui:param name="onLoadJS" value="iniciar()" />
-  <ui:define name="content"> 
-  <p>#{rutaBean.titulo}</p>
- <div id="map_wrapper">
-    <div id="map_canvas"></div>
-	<div id="elevation_chart"></div>
-	<div>
-	    <form>
-			<input type="button" 
-			onclick="saveMapToDataUrl()" 
-			value="Generar imagen del mapa"/>
-		</form>
-<form>
-			<input type="button" onclick="saveElevationToDataUrl()" value="Generar imagen de elevaciones" />
-		</form>		
-	</div>	
-</div>
-<div id="right-panel">
-<!--div id="travel_selector">
-    <p><strong>Modo de Viaje: </strong>
-    <select id="travelType" onchange="calcRoute();">
-        <option value="DRIVING">Driving</option>
-        <option value="WALKING">Walking</option>
-        <option value="BICYCLING">Bicycling</option>
-        <option value="TRANSIT">Transit</option>
-    </select></p>
-</div-->
-    <div id="resumen-ruta"></div>
-    <div id="directions-panel"></div>
-    
-</div>
-<h:outputScript library="js" name="html2canvas.js" />
-<h:outputScript library="js" name="utilidades.js" />
-<h:outputScript library="url" name="jquery.min.js" />
-<h:outputScript library="rutas" name="ruta_sacedon_jadraque.js" />
-<!-- script src="rutas/ruta_canamares.js"></script-->
-<!-- script src="rutas/ruta_majaelrayo.js"></script-->
+  <ui:define name="contenido"> 
+  <h:inputHidden id="ruta" value="#{rutaBean.toJson}" />
 
+
+<div class="row">
+      <section class="col-lg-8">
+      
+        <!-- Left col -->
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Mapa de ruta</h3>
+			<div id="map_wrapper">
+		   <div id="map_canvas"></div>
+			</div>
+            </div>
+          </div>
+
+
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Elevaciones de la ruta</h3>
+			<div id="elevation_chart"></div>
+          </div>
+      </div>
+      
+      </section>
+      <section class="col-lg-4">
+      
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Guía de ruta</h3>
+              <div class="box-body">
+			   <div id="resumen-ruta"></div>
+			   <div id="directions-panel"></div>
+			 </div>
+            </div>
+          </div>
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Acciones</h3>
+			<div>
+			    <h:commandButton class="btn btn-block btn-info" value="Generar imagen del mapa" onclick="saveMapToDataUrl()"/>
+			    <h:commandButton class="btn btn-block btn-info" value="Generar imagen de elevaciones" onclick="saveElevationToDataUrl()"/>
+			</div>	
+            </div>
+          </div>
+      </section>
+	</div>
+
+
+
+<h:outputScript library="url" name="jquery.min.js" />
+<!--  -->
+<h:outputScript library="js" name="html2canvas.js" />
+<!--  -->
+<h:outputScript library="js" name="utilidades.js" />
+<!--  -->
 <h:outputScript library="js" name="mapa.js" />
 
 </ui:define>
-<ui:define name="footer" /> 
+  
+  
+  
 </ui:composition>
   </h:body>
 </html>

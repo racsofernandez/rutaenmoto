@@ -1,46 +1,45 @@
 		#map_canvas {
 			width: 100%;
-			height: 70%;
+			height: 100%;
 		}
-		#elevation_chart {
+ 		#elevation_chart {
 			width: 100%;
-			height: 30%;
+			height: 200px;
 		}
-
-		#travel_selector {
+/* 		#travel_selector {
 			margin-top: 5px;
 			margin-left: 5px;
 		}
-
-		html, body {
+ */
+/* 		html, body {
 			height: 100%;
 			margin: 0;
 			padding: 0;
 		}
-		#map_wrapper {
+ */		#map_wrapper {
 			float: left;
-			width: 60%;
+			width: 100%;
 			height: 500px;
 		}
-		#right-panel {
+/* 		#right-panel {
 		  font-family: 'Roboto','sans-serif';
 		  line-height: 30px;
 		  padding-left: 10px;
 		}
 
-		#right-panel select, #right-panel input {
+ *//* 		#right-panel select, #right-panel input {
 		  font-size: 15px;
 		}
-
-		#right-panel select {
+ */
+/* 		#right-panel select {
 		  width: 100%;
 		}
-
-		#right-panel i {
+ */
+/* 		#right-panel i {
 		  font-size: 12px;
 		}
-
-		#right-panel {
+ */
+/* 		#right-panel {
 			margin: 2px;
 			border-width: 2px;
 			width: 30%;
@@ -48,13 +47,13 @@
 			text-align: left;
 			padding-top: 2px;
 		}
-		#directions-panel {
+ *//* 		#directions-panel {
 			margin-top: 10px;
 			background-color: #FFEE77;
 			padding: 5px;
 		}		
-		#resumen-ruta {
+ *//* 		#resumen-ruta {
 			margin-top: 10px;
 			background-color: #FFEE77;
 			padding: 5px;
-		}		
+		}		 */
