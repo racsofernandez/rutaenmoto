@@ -1,23 +1,46 @@
 package es.meco.rutaenmoto.entidades;
 
+import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.TableGenerator;
 
 import com.google.gson.Gson;
 
-public class RutaDTO {
+@Entity(name="ruta")
+public class RutaDTO implements Serializable {
 
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
+	@OneToMany(mappedBy="idRuta")
 	private List<MarcadorDTO> markers;
 	
 	private Integer alto;
 	
 	private Integer ancho;
 
+	@Column(name="tipo_mapa", nullable=false)
 	private String tipoMapa;
 	
 	private String titulo;
 
 	public RutaDTO() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	/**

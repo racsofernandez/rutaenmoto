@@ -1,7 +1,23 @@
 package es.meco.rutaenmoto.entidades;
 
-public class MarcadorDTO {
+import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.TableGenerator;
+
+@Entity(name="marcador")
+public class MarcadorDTO implements Serializable {
+
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(name="id_ruta", nullable=false)
+	private int idRuta;
+	
 	/** Nombre de la localización. */
 	private String nombre;
 	
@@ -15,6 +31,7 @@ public class MarcadorDTO {
 	private Boolean parada;
 	
 	/** Indica la posición de la etiqueta en referencia al punto (arriba: +15, abajo: -15). */
+	@Column(name="posicion_etiqueta", nullable=false)
 	private Integer posicionEtiqueta;
 	
 	/** Indica si aparece el nombre de la localización en el mapa o no aparece. */
@@ -36,6 +53,30 @@ public class MarcadorDTO {
 		this.posicionEtiqueta = posicionEtiqueta;
 		this.mostrarNombre = mostrarNombre;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+	public Long getIdRuta() {
+		return idRuta;
+	}
+
+
+
+	public void setIdRuta(Long idRuta) {
+		this.idRuta = idRuta;
+	}
+
+
 
 	/**
 	 * @return the nombre
