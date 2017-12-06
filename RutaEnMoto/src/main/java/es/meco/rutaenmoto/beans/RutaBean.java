@@ -19,18 +19,17 @@ public class RutaBean implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 7663251275597406522L;
-	private Integer labelPosArriba = -15;
-	private Integer labelPosAbajo = 15;
+//	private Integer labelPosArriba = -15;
+//	private Integer labelPosAbajo = 15;
 	
 	private RutaDTO datosRuta;
+	private int idRuta;
 	
 	private RutaDao rutaDao = new RutaDao();
 	
 	public RutaBean() {
 		
-		List<RutaDTO> rutas = rutaDao.getAllRutas();
 		
-		datosRuta = rutas.get(0);
 		
 //		List<MarcadorDTO> markers = new ArrayList<MarcadorDTO>();
 //		markers = new ArrayList<MarcadorDTO>();
@@ -67,14 +66,24 @@ public class RutaBean implements Serializable {
 		return ret;
 	}
 	
-	public String getToJson() {
-		
-		String ret = null;
+	public String getRuta() {
+		if (idRuta==0) {
+			idRuta = 1;
+		}
+		String ret = "";
+		datosRuta = rutaDao.getRutaById(idRuta);
 		if (datosRuta!=null) {
 			ret = datosRuta.getToJson();
 		}
 		return ret;
-		
+	}
+
+	public void setIdRuta(int idRuta) {
+		this.idRuta = idRuta;
+	}
+
+	public int getIdRuta() {
+		return idRuta;
 	}
 	
 	

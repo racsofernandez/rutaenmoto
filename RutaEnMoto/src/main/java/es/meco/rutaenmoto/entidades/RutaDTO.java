@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.TableGenerator;
 
 import com.google.gson.Gson;
@@ -20,6 +21,7 @@ public class RutaDTO implements Serializable {
 	private int id;
 	
 	@OneToMany(mappedBy="idRuta")
+	@OrderBy("idRuta, orden DESC")
 	private List<MarcadorDTO> markers;
 	
 	private Integer alto;
@@ -35,11 +37,11 @@ public class RutaDTO implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

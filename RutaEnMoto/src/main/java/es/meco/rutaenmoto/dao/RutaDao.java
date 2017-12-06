@@ -26,10 +26,16 @@ public class RutaDao {
         to.commit();
     }
 
-    // Retrieves all the guests:
+    // Retrieves all the routes:
     public List<RutaDTO> getAllRutas() {
         TypedQuery<RutaDTO> query = em.createQuery(
             "SELECT r FROM ruta r ORDER BY r.id", RutaDTO.class);
         return query.getResultList();
+    }
+    
+    //  Retrieves one route by id
+    public RutaDTO getRutaById(int id) {
+        RutaDTO res = em.find(RutaDTO.class, id);
+        return res;
     }
 }

@@ -17,7 +17,10 @@ public class MarcadorDTO implements Serializable {
 	
 	@Column(name="id_ruta", nullable=false)
 	private int idRuta;
-	
+
+	/** Número de orden dentro de la ruta. */
+	private int orden;
+
 	/** Nombre de la localización. */
 	private String nombre;
 	
@@ -35,6 +38,7 @@ public class MarcadorDTO implements Serializable {
 	private Integer posicionEtiqueta;
 	
 	/** Indica si aparece el nombre de la localización en el mapa o no aparece. */
+	@Column(name="mostrar_nombre", nullable=false)
 	private boolean mostrarNombre;
 
 	public MarcadorDTO() {
@@ -54,25 +58,25 @@ public class MarcadorDTO implements Serializable {
 		this.mostrarNombre = mostrarNombre;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
 
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
 
 
-	public Long getIdRuta() {
+	public int getIdRuta() {
 		return idRuta;
 	}
 
 
 
-	public void setIdRuta(Long idRuta) {
+	public void setIdRuta(int idRuta) {
 		this.idRuta = idRuta;
 	}
 
@@ -84,6 +88,18 @@ public class MarcadorDTO implements Serializable {
 	public String getNombre() {
 		return nombre;
 	}
+
+	public int getOrden() {
+		return orden;
+	}
+
+
+
+	public void setOrden(int orden) {
+		this.orden = orden;
+	}
+
+
 
 	/**
 	 * @param nombre the nombre to set

@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
 xmlns:h="http://java.sun.com/jsf/html"
 xmlns:ui="http://java.sun.com/jsf/facelets">
   <head>
@@ -9,6 +10,9 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
     <title>Google Maps JavaScript API Example</title>
 
   </head>
+	<f:metadata>
+	  <f:viewParam name="idRuta" value="#{rutaBean.idRuta}"/>
+	</f:metadata>
   <h:body>
   <ui:composition template="/templates/principal.xhtml">
   <ui:define name="titulo_contenido">
@@ -17,7 +21,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
   </ui:define> 
   <ui:param name="onLoadJS" value="iniciar()" />
   <ui:define name="contenido"> 
-  <h:inputHidden id="ruta" value="#{rutaBean.toJson}" />
+  <h:inputHidden id="ruta" value="#{rutaBean.ruta}" />
 
 
 <div class="row">
