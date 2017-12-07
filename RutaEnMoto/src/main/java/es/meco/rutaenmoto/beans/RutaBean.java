@@ -1,14 +1,12 @@
 package es.meco.rutaenmoto.beans;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import es.meco.rutaenmoto.dao.RutaDao;
-import es.meco.rutaenmoto.entidades.MarcadorDTO;
 import es.meco.rutaenmoto.entidades.RutaDTO;
 
 @ManagedBean
@@ -78,6 +76,14 @@ public class RutaBean implements Serializable {
 		return ret;
 	}
 
+	public RutaDTO[] getListaRutas() {
+		List<RutaDTO> rutas = rutaDao.getAllRutas();
+		RutaDTO[] listaRutas = new RutaDTO[rutas.size()];
+		listaRutas = rutas.toArray(listaRutas);
+		
+		return listaRutas;
+	}
+	
 	public void setIdRuta(int idRuta) {
 		this.idRuta = idRuta;
 	}

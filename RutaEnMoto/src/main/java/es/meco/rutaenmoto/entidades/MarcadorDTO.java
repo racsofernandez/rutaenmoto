@@ -7,10 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.TableGenerator;
+import javax.persistence.OrderBy;
 
 @Entity(name="marcador")
 public class MarcadorDTO implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4490117401992899266L;
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;

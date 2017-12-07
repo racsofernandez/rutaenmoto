@@ -18,6 +18,8 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
   <h:outputStylesheet library="url" name="font-awesome.min.css" />
   <!-- Ionicons -->
   <h:outputStylesheet library="url" name="ionicons.min.css" />
+  <!-- Data Tables -->
+  <h:outputStylesheet library="plugins" name="datatables/dataTables.bootstrap.css" />
   <!-- Theme style -->
   <h:outputStylesheet library="dist" name="css/AdminLTE.min.css" />
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -25,6 +27,8 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
         apply the skin class to the body tag so the changes take effect.
   -->
   <h:outputStylesheet library="dist" name="css/skins/skin-blue.min.css" />
+  
+  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -104,8 +108,34 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:outputScript library="plugins" name="jQuery/jquery-2.2.3.min.js" />
 <!-- Bootstrap 3.3.6 -->
 <h:outputScript library="bootstrap" name="js/bootstrap.min.js" />
+<!-- DataTables -->
+<h:outputScript library="plugins" name="datatables/dataTables.bootstrap.js" />
+<h:outputScript library="plugins" name="datatables/jquery.dataTables.js" />
+<h:outputScript library="plugins" name="datatables/dataTables.bootstrap.min.js" />
+<h:outputScript library="plugins" name="datatables/jquery.dataTables.min.js" />
+<!-- SlimScroll -->
+<h:outputScript library="plugins" name="slimScroll/jquery.slimscroll.min.js" />
+<!-- FastClick -->
+<h:outputScript library="plugins" name="fastclick/fastclick.js" />
 <!-- AdminLTE App -->
 <h:outputScript library="dist" name="js/app.min.js" />
+<!-- AdminLTE for demo purposes -->
+<h:outputScript library="dist" name="js/demo.js" />
+<!-- page script -->
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
+
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

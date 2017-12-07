@@ -10,18 +10,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
-import javax.persistence.TableGenerator;
 
 import com.google.gson.Gson;
 
 @Entity(name="ruta")
 public class RutaDTO implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9108733408886015083L;
+
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	@OneToMany(mappedBy="idRuta")
-	@OrderBy("idRuta, orden DESC")
+	@OrderBy("idRuta, orden ASC")
 	private List<MarcadorDTO> markers;
 	
 	private Integer alto;

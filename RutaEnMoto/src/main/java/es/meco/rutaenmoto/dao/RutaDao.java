@@ -1,5 +1,6 @@
 package es.meco.rutaenmoto.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,8 +11,12 @@ import javax.persistence.TypedQuery;
 
 import es.meco.rutaenmoto.entidades.RutaDTO;
 
-public class RutaDao {
+public class RutaDao implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 33070190443050780L;
 	private static final String PERSISTENCE_UNIT_NAME = "RutaEnMotoPU";	
 	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 	private static EntityManager em = factory.createEntityManager();
