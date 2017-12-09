@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <title>Google Maps JavaScript API Example</title>
+
+  </head>
+	<f:metadata>
+	  <f:viewParam name="idRuta" value="#{rutaBean.idRuta}"/>
+	</f:metadata>
+  <h:body>
+  <ui:composition template="/templates/principal.xhtml">
+  <ui:define name="titulo_contenido">
+  	<h1>Ruta</h1>
+  	<small>#{rutaBean.titulo}</small>
+  </ui:define> 
+  <ui:param name="onLoadJS" value="iniciar()" />
+  <ui:define name="contenido"> 
+  <h:inputHidden id="ruta" value="#{rutaBean.ruta}" />
+
+
+<div class="row">
+      <section class="col-lg-8">
+      
+        <!-- Left col -->
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Mapa de ruta</h3>
+			<div id="map_wrapper">
+		   <div id="map_canvas"></div>
+			</div>
+            </div>
+          </div>
+
+
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Elevaciones de la ruta</h3>
+			<div id="elevation_chart"></div>
+          </div>
+      </div>
+      
+      </section>
+      <section class="col-lg-4">
+      
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Guía de ruta</h3>
+              <div class="box-body">
+			   <div id="resumen-ruta"></div>
+			   <div id="directions-panel"></div>
+			 </div>
+            </div>
+          </div>
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Acciones</h3>
+			<div>
+			    <h:commandButton class="btn btn-block btn-info" value="Generar imagen del mapa" onclick="saveMapToDataUrl()"/>
+			    <h:commandButton class="btn btn-block btn-info" value="Generar imagen de elevaciones" onclick="saveElevationToDataUrl()"/>
+			</div>	
+            </div>
+          </div>
+      </section>
+	</div>
+
+
+
+<h:outputScript library="url" name="jquery.min.js" />
+<!--  -->
+<h:outputScript library="js" name="html2canvas.js" />
+<!--  -->
+<h:outputScript library="js" name="utilidades.js" />
+<!--  -->
+<h:outputScript library="js" name="mapa.js" />
+
+</ui:define>
+  
+  
+  
+</ui:composition>
+  </h:body>
+</html>
